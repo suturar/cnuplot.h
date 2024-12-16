@@ -1,5 +1,5 @@
 /*
-  cnuplot - v0.0.1
+  cnuplot - v0.0.1-dev
 */
 #ifndef CNUPLOT_H
 #define CNUPLOT_H
@@ -275,7 +275,7 @@ bool cnuplot_getint(int *target, const char *varname)
     char buff[64];
     // NOTE: I don't know how fullproof this is, it just worked on my gnuplot version 6.0
     const char *undefined_text = "         undefined variable:";
-    cnuplot_send_line("print sprintf('%%.5e', %s)", varname);
+    cnuplot_send_line("print sprintf('%%d', %s)", varname);
     int result = read(cnuplot_driver.read_handle, buff, CNUPLOT_ARRAY_LEN(buff));
     if (result == 0) {
 	cnuplot_log(CNUPLOT_ERROR, "Gnuplot didn't answer anything when asking for variable");
